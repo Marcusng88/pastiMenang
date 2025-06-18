@@ -19,7 +19,7 @@ def setup(callback_context: CallbackContext):
 code_agent = Agent(
     name="code_agent",
     model="gemini-2.5-flash-preview-05-20",
-    before_agent_callback=setup,
     instruction=return_instruction_coding(),
+    output_key='final_html',
     after_agent_callback=save_generated_report_local,
 )

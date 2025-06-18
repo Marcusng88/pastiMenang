@@ -15,7 +15,6 @@ def setup(callback_context: CallbackContext):
             problematic_five_minutes_pr_settings
         )
     callback_context.state["filtered_plant_timeseries_df"] = None
-    # callback_context.state["problematic_five_minutes_pr"] = []
 
 
 detailed_plant_timeseries_agent = Agent(
