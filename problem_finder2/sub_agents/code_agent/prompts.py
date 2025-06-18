@@ -12,7 +12,7 @@ def return_instruction_coding() -> str:
     ## Supported HTML Tags (Use These Only)
     ```html
     <!-- Structure -->
-    <div>, <span>, <p>, <br>, <h1> to <h6>
+    <html>, <body>, <div>, <span>, <p>, <br>, <h1> to <h6>
 
     <!-- Tables -->
     <table>, <tr>, <td>, <th>, <thead>, <tbody>
