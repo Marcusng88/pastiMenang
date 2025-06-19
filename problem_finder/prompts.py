@@ -329,6 +329,12 @@ def return_instruction_planner() -> str:
 
     Avoid referencing specific tool numbers or technical implementation details. Focus on the logical flow of investigation and the reasoning behind each step.
 
+    ## Before it end
+    - Use `tools[5]` to retrieve the plant id of requested plant
+    - Use `tools[6]` to retrieve the device id of requested plant's inverters
+    - Figure out what dates to check for the inverters performance
+    - Use tool `initial_config` (MANDATORY) to store the information
+
     ## Success Criteria
 
     Your plans should be detailed enough that a field engineer could follow them systematically, with clear decision points and next steps based on findings at each stage. Each plan should anticipate multiple scenarios and provide guidance for various possible outcomes.
