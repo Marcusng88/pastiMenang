@@ -87,117 +87,141 @@ def return_instruction_daily_pr() -> str:
     - Cross-reference with availability and operational data
     - Assess both short-term anomalies and long-term trends
 
-    ## Output Requirements
+    ## Output Requirements (Markdown format)
 
-    ### JSON Response Format:
-    ```json
-    {
-        "problematic_daily_pr": [
-            {
-                "record_time": "YYYY-MM-DD",
-                "plant_name": "string",
-                "anomaly_type": "dramatic_pr_drop|low_pr_performance|temperature_impact|availability_related|soiling_impact|curtailment_effect|degradation_trend",
-                "severity": "low|medium|high|critical",
-                "pr_metrics": {
-                    "daily_pr_percent": "number",
-                    "daily_pr_temp_corrected_percent": "number",
-                    "pr_temperature_difference": "number"
-                },
-                "contributing_factors": {
-                    "daily_availability_percent": "number",
-                    "plant_soiling_loss_percent": "number", 
-                    "plant_curtailment_kw": "number",
-                    "average_cell_temperature_c": "number",
-                    "daily_slope_radiation_kwh_m_squared": "number"
-                },
-                "performance_analysis": {
-                    "pr_deviation_from_7day_average": "number",
-                    "expected_pr_range": "string",
-                    "temperature_correction_impact": "number",
-                    "radiation_pr_correlation": "string"
-                },
-                "yield_impact": {
-                    "daily_yield_kwh": "number",
-                    "estimated_yield_loss_kwh": "number",
-                    "yield_loss_percentage": "number"
-                }
-            }
-        ],
-        "analysis": {
-            "summary": "Comprehensive explanation of identified PR anomalies and their causes",
-            "analysis_period": {
-                "start_date": "YYYY-MM-DD",
-                "end_date": "YYYY-MM-DD",
-                "total_days_analyzed": "number"
-            },
-            "plant_information": {
-                "plant_name": "string"
-            },
-            "pr_performance_summary": {
-                "average_daily_pr": "number",
-                "average_temp_corrected_pr": "number",
-                "lowest_daily_pr": "number",
-                "highest_daily_pr": "number",
-                "pr_trend": "improving|stable|declining",
-                "temperature_correction_effectiveness": "string",
-                "pr_standard_deviation": "number"
-            },
-            "anomaly_breakdown": {
-                "total_anomalies_found": "number",
-                "critical_issues": "number",
-                "high_priority": "number",
-                "medium_priority": "number",
-                "low_priority": "number"
-            },
-            "root_cause_analysis": {
-                "primary_causes": [
-                    "Equipment degradation",
-                    "Soiling accumulation", 
-                    "Grid curtailment",
-                    "Temperature effects",
-                    "Availability issues"
-                ],
-                "soiling_impact_days": "number",
-                "curtailment_affected_days": "number",
-                "low_availability_days": "number",
-                "high_temperature_impact_days": "number"
-            },
-            "performance_trends": {
-                "daily_pr_trend": "string",
-                "seasonal_patterns": "string",
-                "degradation_rate_estimate": "number (%/month)",
-                "temperature_correlation": "string"
-            },
-            "recommendations": [
-                "Immediate actions for critical PR drops",
-                "Maintenance recommendations for consistent low PR",
-                "Soiling mitigation strategies", 
-                "Performance monitoring improvements"
-            ],
-            "estimated_financial_impact": {
-                "total_yield_loss_kwh": "number",
-                "estimated_revenue_loss": "string",
-                "performance_improvement_potential": "string"
-            }
-        },
-        "metadata": {
-            "analysis_timestamp": "ISO datetime",
-            "data_quality": {
-                "total_records_analyzed": "number",
-                "records_with_anomalies": "number",
-                "data_completeness": "number (%)",
-                "missing_data_days": "number"
-            },
-            "analysis_parameters": {
-                "pr_threshold_critical": "70%",
-                "pr_threshold_warning": "80%",
-                "trend_analysis_window": "7 days",
-                "temperature_difference_threshold": "10%",
-                "radiation_threshold_kwh_m2": "4.0"
-            }
-        }
-    }
-    ```
+    # Daily Performance Ratio (PR) Anomaly Report
+
+    This report outlines daily performance ratio anomalies detected in your solar power plant, providing detailed insights into their causes, impacts, and recommended actions.
+
+    ---
+
+    ## 1. Problematic Daily PR Records
+
+    This section details individual instances where the daily Performance Ratio (PR) exhibited unusual behavior.
+
+    ### Example Anomaly Record
+
+    * **Record Time:** `YYYY-MM-DD` (e.g., 2025-06-18)
+    * **Plant Name:** `string` (e.g., "Greenfield Solar Plant")
+    * **Anomaly Type:** `dramatic_pr_drop` | `low_pr_performance` | `temperature_impact` | `availability_related` | `soiling_impact` | `curtailment_effect` | `degradation_trend` (e.g., `low_pr_performance`)
+    * **Severity:** `low` | `medium` | `high` | `critical` (e.g., `medium`)
+
+        **PR Metrics:**
+        * **Daily PR (%):** `number` (e.g., 78.5)
+        * **Daily PR Temp. Corrected (%):** `number` (e.g., 85.2)
+        * **PR Temperature Difference:** `number` (e.g., -6.7)
+
+        **Contributing Factors:**
+        * **Daily Availability (%):** `number` (e.g., 95.0)
+        * **Plant Soiling Loss (%):** `number` (e.g., 3.0)
+        * **Plant Curtailment (kW):** `number` (e.g., 0.0)
+        * **Average Cell Temperature (°C):** `number` (e.g., 48.1)
+        * **Daily Slope Radiation (kWh/m²):** `number` (e.g., 6.2)
+
+        **Performance Analysis:**
+        * **PR Deviation from 7-Day Average:** `number` (e.g., -12.5)
+        * **Expected PR Range:** `string` (e.g., "88-92%")
+        * **Temperature Correction Impact:** `number` (e.g., 6.7)
+        * **Radiation PR Correlation:** `string` (e.g., "Strong correlation, but PR consistently below expected for radiation levels.")
+
+        **Yield Impact:**
+        * **Daily Yield (kWh):** `number` (e.g., 18500)
+        * **Estimated Yield Loss (kWh):** `number` (e.g., 2100)
+        * **Yield Loss Percentage:** `number` (e.g., 10.2)
+
+    *(Additional problematic daily PR records would follow here if present in the data.)*
+
+    ---
+
+    ## 2. Analysis Summary
+
+    ### Comprehensive Overview
+
+    Comprehensive explanation of identified PR anomalies and their causes.
+
+    ### Analysis Period
+
+    * **Start Date:** `YYYY-MM-DD` (e.g., 2025-06-01)
+    * **End Date:** `YYYY-MM-DD` (e.g., 2025-06-18)
+    * **Total Days Analyzed:** `number` (e.g., 18)
+
+    ### Plant Information
+
+    * **Plant Name:** `string` (e.g., "Greenfield Solar Plant")
+
+    ### PR Performance Summary
+
+    * **Average Daily PR (%):** `number` (e.g., 89.1)
+    * **Average Temp. Corrected PR (%):** `number` (e.g., 92.5)
+    * **Lowest Daily PR (%):** `number` (e.g., 78.5)
+    * **Highest Daily PR (%):** `number` (e.g., 96.3)
+    * **PR Trend:** `improving` | `stable` | `declining` (e.g., `stable`)
+    * **Temperature Correction Effectiveness:** `string` (e.g., "Temperature correction accounts for significant portion of PR variation.")
+    * **PR Standard Deviation:** `number` (e.g., 4.1)
+
+    ### Anomaly Breakdown
+
+    * **Total Anomalies Found:** `number` (e.g., 6)
+    * **Critical Issues:** `number` (e.g., 0)
+    * **High Priority:** `number` (e.g., 2)
+    * **Medium Priority:** `number` (e.g., 3)
+    * **Low Priority:** `number` (e.g., 1)
+
+    ### Root Cause Analysis
+
+    * **Primary Causes:**
+        * Equipment degradation
+        * Soiling accumulation
+        * Grid curtailment
+        * Temperature effects
+        * Availability issues
+    * **Soiling Impact Days:** `number` (e.g., 4)
+    * **Curtailment Affected Days:** `number` (e.g., 0)
+    * **Low Availability Days:** `number` (e.g., 1)
+    * **High Temperature Impact Days:** `number` (e.g., 7)
+
+    ### Performance Trends
+
+    * **Daily PR Trend:** `string` (e.g., "Stable performance with occasional dips related to high temperatures.")
+    * **Seasonal Patterns:** `string` (e.g., "PR tends to be lower in warmer months due to increased module temperature.")
+    * **Degradation Rate Estimate:** `number (%/month)` (e.g., 0.05)
+    * **Temperature Correlation:** `string` (e.g., "Moderate inverse correlation, PR decreases as temperature increases.")
+
+    ### Recommendations
+
+    * Immediate actions for critical PR drops (e.g., Investigate sudden 10%+ PR drops immediately.)
+    * Maintenance recommendations for consistent low PR (e.g., Schedule monthly panel cleaning during dry seasons.)
+    * Soiling mitigation strategies (e.g., Implement automated soiling detection and cleaning alerts.)
+    * Performance monitoring improvements (e.g., Review and adjust PR benchmarks based on seasonal changes.)
+
+    ### Estimated Financial Impact
+
+    * **Total Yield Loss (kWh):** `number` (e.g., 8500)
+    * **Estimated Revenue Loss:** `string` (e.g., "$1,100 USD")
+    * **Performance Improvement Potential:** `string` (e.g., "Potential to recover 3-5% lost yield by addressing soiling and high-temperature effects.")
+
+    ---
+
+    ## 3. Metadata
+
+    ### Analysis Timestamp
+
+    `ISO datetime` (e.g., 2025-06-18T22:25:39+08:00)
+
+    ### Data Quality
+
+    * **Total Records Analyzed:** `number` (e.g., 18)
+    * **Records with Anomalies:** `number` (e.g., 6)
+    * **Data completeness (%):** `number` (e.g., 98.5)
+    * **Missing Data Days:** `number` (e.g., 0)
+
+    ### Analysis Parameters
+
+    * **PR Threshold Critical:** "70%"
+    * **PR Threshold Warning:** "80%"
+    * **Trend Analysis Window:** "7 days"
+    * **Temperature Difference Threshold:** "10%"
+    * **Radiation Threshold (kWh/m²):** "4.0"
 
     ## Critical Analysis Points
     - **Do not ignore any problematic PR**: Flag all instances where PR falls below acceptable thresholds

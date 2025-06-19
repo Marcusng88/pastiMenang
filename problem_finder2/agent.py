@@ -3,12 +3,10 @@ from datetime import date
 from google.adk.agents import Agent, ParallelAgent, SequentialAgent
 from google.adk.agents.callback_context import CallbackContext
 from google.adk.models.llm_response import types
-from google.adk.tools import load_artifacts
 from google.adk.tools.tool_context import ToolContext
 from solar_investigator.tools import tools
 from .prompts import return_instruction_planner
 from .sub_agents import (
-    code_agent,
     daily_pr_agent,
     detailed_inverter_performance_agent,
     detailed_plant_timeseries_agent,
@@ -39,6 +37,7 @@ def setup(callback_context: CallbackContext):
     callback_context.state["inverter_date_to_check"] = []
     callback_context.state["filtered_plant_timeseries_df"] = None
     callback_context.state["date_requested"] = None
+    callback_context.state["date_today"] = date_today
 
 
 def initial_config(
@@ -91,7 +90,6 @@ root_agent = SequentialAgent(
         planner_agent,
         daily_pr_agent,
         parallel_pipeline,
-        code_agent,
     ],
     before_agent_callback=setup,
 )

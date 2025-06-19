@@ -1,5 +1,5 @@
 from io import BytesIO
-
+from google.genai import types
 from google.adk.agents import Agent
 from google.adk.agents.callback_context import CallbackContext
 
@@ -22,4 +22,6 @@ code_agent = Agent(
     instruction=return_instruction_coding(),
     output_key='final_html',
     after_agent_callback=save_generated_report_local,
+    generate_content_config=types.GenerateContentConfig(temperature=0.1),
+
 )

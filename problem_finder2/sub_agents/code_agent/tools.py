@@ -5,7 +5,7 @@ from google.genai import types
 from xhtml2pdf import pisa
 
 
-async def save_generated_report(callback_context: CallbackContext):
+async def save_generated_report_to_artifact(callback_context: CallbackContext):
     """Saves generated PDF report bytes as an artifact.
     Parameters
     bytes report_bytes : the pdf report bytes

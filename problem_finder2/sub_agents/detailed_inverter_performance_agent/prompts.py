@@ -1,3 +1,4 @@
+
 def return_instruction_detailed_inverter_performance() -> str:
     instruction_prompt_v1 = """
         # Inverter Performance Anomaly Detection Agent
@@ -54,23 +55,6 @@ def return_instruction_detailed_inverter_performance() -> str:
     - Operation time < 300 minutes (5 hours) during clear weather days
     - Complete energy production failure (yield = 0 kWh)
 
-    ### High Priority Issues:
-    - Daily yield < 50% of expected capacity-based yield
-    - Availability percentage < 90%
-    - Operation time < 600 minutes (10 hours) during normal weather
-    - Specific yield < 3 kWh/kWp on clear days
-
-    ### Medium Priority Issues:
-    - Daily yield < 70% of expected capacity-based yield
-    - Availability percentage < 95%
-    - Operation time variability > 20% from plant average
-    - Gradual performance degradation trends
-
-    ### Low Priority Issues:
-    - Daily yield < 85% of expected capacity-based yield
-    - Availability percentage < 98%
-    - Minor operation time deviations
-
     ## Analysis Methodology
 
     ### 1. Capacity-Based Performance Assessment
@@ -83,17 +67,12 @@ def return_instruction_detailed_inverter_performance() -> str:
     - Identify patterns of low availability
     - Correlate availability with energy production
 
-    ### 3. Operation Time Validation
-    - Convert `daily_operation_time_hours` from minutes to hours for analysis
-    - Compare against expected daylight hours for the location
-    - Identify unusually short or extended operation periods
-
-    ### 4. Cross-Inverter Comparison
+    ### 3. Cross-Inverter Comparison
     - Compare performance across similar inverters in the same plant
     - Identify underperforming units relative to plant average
     - Detect systematic vs. individual inverter issues
 
-    ### 5. Temporal Pattern Analysis
+    ### 4. Temporal Pattern Analysis
     - Look for degradation trends over multiple days
     - Identify recurring daily patterns or anomalies
     - Assess consistency of performance metrics
@@ -108,134 +87,163 @@ def return_instruction_detailed_inverter_performance() -> str:
 
     ## Output Requirements
 
-    ### JSON Response Format:
-    ```json
-    {
-        "problematic_detailed_inverter_performance": [
-            {
-                "date": "2025-05-29T00:00:00Z",
-                "device_id": "string",
-                "plant_id": "string",
-                "label": "Plant S-I01",
-                "anomaly_type": "low_yield|zero_production|availability_issue|operation_time_anomaly|capacity_underperformance|complete_failure",
-                "severity": "low|medium|high|critical",
-                "metrics": {
-                    "daily_yield_kwh": 335.50,
-                    "daily_operation_time_minutes": 644.00,
-                    "availability_percent": 1.00,
-                    "inverter_capacity_kw": "number"
-                },
-                "performance_indicators": {
-                    "specific_yield_kwh_per_kwp": "number",
-                    "expected_yield_kwh": "number",
-                    "yield_deviation_percent": "number",
-                    "operation_time_hours": "number",
-                    "expected_operation_hours": "number"
-                },
-                "anomaly_details": {
-                    "capacity_utilization_percent": "number",
-                    "availability_impact": "string",
-                    "operation_efficiency": "string",
-                    "comparison_to_plant_average": "string"
-                },
-                "flags": {
-                    "inverter_offline": "boolean",
-                    "zero_energy_production": "boolean",
-                    "low_availability": "boolean",
-                    "short_operation_time": "boolean",
-                    "capacity_underperformance": "boolean"
-                }
-            }
-        ],
-        "analysis": {
-            "summary": "Comprehensive overview of all identified inverter anomalies",
-            "analysis_period": {
-                "dates_analyzed": ["2025-05-29"],
-                "total_days": "number"
-            },
-            "devices_analyzed": {
-                "total_devices": "number",
-                "devices_with_issues": "number",
-                "problem_free_devices": ["device_id_list"],
-                "most_problematic_devices": ["device_id_list"]
-            },
-            "anomaly_summary": {
-                "total_anomalies_found": "number",
-                "critical_issues": "number",
-                "high_priority": "number",
-                "medium_priority": "number",
-                "low_priority": "number"
-            },
-            "anomaly_types_breakdown": {
-                "low_yield": "number",
-                "zero_production": "number",
-                "availability_issues": "number",
-                "operation_time_anomalies": "number",
-                "capacity_underperformance": "number",
-                "complete_failures": "number"
-            },
-            "performance_analysis": {
-                "plant_average_specific_yield": "number",
-                "plant_average_availability": "number",
-                "plant_average_operation_time": "number",
-                "underperforming_inverters_count": "number"
-            },
-            "worst_performing_devices": [
-                {
-                    "device_id": "string",
-                    "label": "string",
-                    "issues_count": "number",
-                    "primary_problems": ["string"],
-                    "performance_impact": "string"
-                }
-            ],
-            "recommendations": [
-                "Immediate actions for critical failures",
-                "Maintenance scheduling for underperforming inverters",
-                "Performance monitoring improvements",
-                "Preventive maintenance recommendations"
-            ],
-            "potential_root_causes": [
-                "Inverter hardware degradation",
-                "Connection/communication issues",
-                "Environmental factors",
-                "Grid curtailment",
-                "Maintenance requirements"
-            ],
-            "estimated_impact": {
-                "total_yield_loss_kwh": "number",
-                "capacity_utilization_loss_percent": "number",
-                "financial_impact_estimate": "string",
-                "availability_impact_hours": "number"
-            }
-        },
-        "metadata": {
-            "analysis_request": {
-                "devices_requested": ["device_id_list"],
-                "dates_analyzed": ["date_list"],
-                "total_tool_calls_made": "number"
-            },
-            "inverter_capacity_data": {
-                "capacity_source": "inverter_device_id_and_capacity_peak",
-                "devices_with_capacity_data": "number",
-                "total_plant_capacity_kw": "number"
-            },
-            "data_quality": {
-                "total_records_analyzed": "number",
-                "records_with_issues": "number",
-                "data_completeness_percent": "number",
-                "missing_data_periods": "number"
-            },
-            "analysis_parameters": {
-                "availability_threshold": "95%",
-                "minimum_operation_time_hours": "10",
-                "capacity_utilization_threshold": "70%",
-                "specific_yield_benchmark": "3.5 kWh/kWp"
-            },
-            "analysis_timestamp": "ISO datetime"
-        }
-    }
-    ```
+    ### Markdown Response Format
+    # Inverter Performance Analysis Report
+
+    This report provides a comprehensive analysis of inverter performance, highlighting problematic devices and offering insights into potential issues and recommendations.
+
+    ---
+
+    ## 1. Problematic Detailed Inverter Performance
+
+    This section details individual inverter performance issues detected.
+
+    ### Example Anomaly (for "Plant S-I01" on 2025-05-29)
+
+    * **Date:** 2025-05-29T00:00:00Z
+    * **Device ID:** `inv-001-abc` (example)
+    * **Plant ID:** `plant-xyz-123` (example)
+    * **Label:** Plant S-I01
+    * **Anomaly Type:** `low_yield` (e.g., low_yield | zero_production | availability_issue | operation_time_anomaly | capacity_underperformance | complete_failure)
+    * **Severity:** `medium` (e.g., low | medium | high | critical)
+
+        **Metrics:**
+        * **Daily Yield (kWh):** 335.50
+        * **Daily Operation Time (minutes):** 644.00
+        * **Availability (%):** 1.00
+        * **Inverter Capacity (kW):** 200.00 (example number)
+
+        **Performance Indicators:**
+        * **Specific Yield (kWh/kWp):** 1.68 (example number)
+        * **Expected Yield (kWh):** 500.00 (example number)
+        * **Yield Deviation (%):** -32.90 (example number)
+        * **Operation Time (hours):** 10.73 (example number)
+        * **Expected Operation Hours:** 12.00 (example number)
+
+        **Anomaly Details:**
+        * **Capacity Utilization (%):** 80.50 (example number)
+        * **Availability Impact:** "System was online but significantly underproduced." (example string)
+        * **Operation Efficiency:** "Below expected efficiency due to intermittent dips." (example string)
+        * **Comparison to Plant Average:** "Yield is 15% lower than plant average for this period." (example string)
+
+        **Flags:**
+        * **Inverter Offline:** `false` (example boolean)
+        * **Zero Energy Production:** `false` (example boolean)
+        * **Low Availability:** `false` (example boolean)
+        * **Short Operation Time:** `false` (example boolean)
+        * **Capacity Underperformance:** `true` (example boolean)
+
+    *(Additional inverter performance entries would follow here if present in the data.)*
+
+    ---
+
+    ## 2. Analysis
+
+    ### Summary
+
+    Comprehensive overview of all identified inverter anomalies.
+
+    ### Analysis Period
+
+    * **Dates Analyzed:** ["2025-05-29", "2025-05-30", "2025-05-31"] (example list)
+    * **Total Days:** 3 (example number)
+
+    ### Devices Analyzed
+
+    * **Total Devices:** 50 (example number)
+    * **Devices with Issues:** 5 (example number)
+    * **Problem-Free Devices:** ["inv-002-xyz", "inv-003-abc", ...] (example device_id_list)
+    * **Most Problematic Devices:** ["inv-001-abc", "inv-005-def"] (example device_id_list)
+
+    ### Anomaly Summary
+
+    * **Total Anomalies Found:** 7 (example number)
+    * **Critical Issues:** 1 (example number)
+    * **High Priority:** 2 (example number)
+    * **Medium Priority:** 3 (example number)
+    * **Low Priority:** 1 (example number)
+
+    ### Anomaly Types Breakdown
+
+    * **Low Yield:** 4 (example number)
+    * **Zero Production:** 1 (example number)
+    * **Availability Issues:** 1 (example number)
+    * **Operation Time Anomalies:** 0 (example number)
+    * **Capacity Underperformance:** 3 (example number)
+    * **Complete Failures:** 1 (example number)
+
+    ### Performance Analysis
+
+    * **Plant Average Specific Yield:** 4.2 (example number) kWh/kWp
+    * **Plant Average Availability:** 98.5 (example number) %
+    * **Plant Average Operation Time:** 11.5 (example number) hours
+    * **Underperforming Inverters Count:** 4 (example number)
+
+    ### Worst Performing Devices
+
+    * **Device ID:** `inv-005-def` (example)
+    * **Label:** Plant T-I05 (example string)
+    * **Issues Count:** 2 (example number)
+    * **Primary Problems:** ["zero_production", "low_availability"] (example string list)
+    * **Performance Impact:** "Complete shutdown for 4 hours, significant yield loss." (example string)
+
+    *(Additional worst performing device entries would follow here if present.)*
+
+    ### Recommendations
+
+    * Immediate actions for critical failures (e.g., dispatching a technician to Plant S-I01 for power restoration).
+    * Maintenance scheduling for underperforming inverters (e.g., checking connections for Plant T-I05).
+    * Performance monitoring improvements (e.g., implementing real-time alerts for 5-minute PR drops).
+    * Preventive maintenance recommendations (e.g., regular cleaning of panels and inverters).
+
+    ### Potential Root Causes
+
+    * Inverter hardware degradation
+    * Connection/communication issues
+    * Environmental factors (e.g., excessive shading, dust accumulation)
+    * Grid curtailment (utility imposing limits on power output)
+    * Maintenance requirements (e.g., overdue servicing)
+
+    ### Estimated Impact
+
+    * **Total Yield Loss (kWh):** 1500.00 (example number)
+    * **Capacity Utilization Loss (%):** 5.50 (example number)
+    * **Financial Impact Estimate:** "Approximately $1,200 USD in lost revenue." (example string)
+    * **Availability Impact (hours):** 24.00 (example number)
+
+    ---
+
+    ## 3. Metadata
+
+    ### Analysis Request
+
+    * **Devices Requested:** ["all_active_inverters"] (example device_id_list)
+    * **Dates Analyzed:** ["2025-05-29", "2025-05-30"] (example date_list)
+    * **Total Tool Calls Made:** 15 (example number)
+
+    ### Inverter Capacity Data
+
+    * **Capacity Source:** `inverter_device_id_and_capacity_peak`
+    * **Devices with Capacity Data:** 50 (example number)
+    * **Total Plant Capacity (kW):** 10000.00 (example number)
+
+    ### Data Quality
+
+    * **Total Records Analyzed:** 500 (example number)
+    * **Records with Issues:** 5 (example number)
+    * **Data Completeness (%):** 99.0 (example number)
+    * **Missing Data Periods:** 2 (example number)
+
+    ### Analysis Parameters
+
+    * **Availability Threshold:** 95%
+    * **Minimum Operation Time (hours):** 10
+    * **Capacity Utilization Threshold:** 70%
+    * **Specific Yield Benchmark:** 3.5 kWh/kWp
+
+    ### Analysis Timestamp
+    
+    2025-06-18T10:08:21Z  (example ISO datetime) `{date_today}`
 
     ## Calculation Guidelines
 

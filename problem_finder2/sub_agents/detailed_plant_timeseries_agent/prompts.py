@@ -118,80 +118,102 @@ def return_instruction_detailed_plant_timeseries() -> str:
     3. **Use `append_problematic_rows`** to store the anomalies data that you have analyzed
     4. **Focus on the available columns** - don't reference plant_id in analysis unless obtained from tools[5]
 
-    ## Output Format (Must return results, don't give null except when no data exists)
-    Return results as a valid JSON object:
+    ## Output Format (Must return results, don't give null except when no data exists) (Markdown format)
 
-    ```json
-    {
-        "problematic_five_minutes_pr": [
-            {
-                "datetime": "2025-05-29T06:00:00Z",
-                "five_min_pr_percent": 67.65,
-                "irradiance_wm_squared": 14.50,
-                "pv_module_temperature_c": 24.05,
-                "active_power_effective_kw": 9.72,
-                "anomaly_type": "low_light_high_pr|dramatic_pr_drop|environmental_mismatch|power_generation_anomaly|erratic_behavior|complete_outage",
-                "severity": "low|medium|high|critical",
-                "context": "Detailed explanation of why this is anomalous",
-                "contributing_factors": {
-                    "irradiance_level": "low|medium|high",
-                    "temperature_impact": "normal|high|low",
-                    "power_correlation": "normal|poor|excellent"
-                }
-            }
-        ],
-        "analysis": {
-            "summary": "Comprehensive explanation of identified anomalies, potential causes, patterns observed, and recommendations",
-            "analysis_period": {
-                "total_records_analyzed": "number",
-                "total_anomalies_found": "number",
-                "dates_processed": ["YYYY-MM-DD"]
-            },
-            "anomaly_breakdown": {
-                "dramatic_pr_drops": "number",
-                "environmental_mismatches": "number", 
-                "power_generation_anomalies": "number",
-                "erratic_behavior_instances": "number",
-                "complete_outages": "number"
-            },
-            "severity_distribution": {
-                "critical": "number",
-                "high": "number", 
-                "medium": "number",
-                "low": "number"
-            },
-            "environmental_analysis": {
-                "irradiance_range_analyzed": "string",
-                "temperature_range_analyzed": "string",
-                "power_range_analyzed": "string",
-                "most_problematic_conditions": "string"
-            },
-            "patterns_identified": [
-                "Specific patterns observed across the analysis period"
-            ],
-            "recommendations": [
-                "Immediate actions for critical anomalies",
-                "Investigation priorities",
-                "Monitoring improvements",
-                "Maintenance recommendations"
-            ]
-        },
-        "metadata": {
-            "analysis_timestamp": "ISO datetime",
-            "data_quality": {
-                "total_five_minute_intervals": "number",
-                "anomalous_intervals": "number",
-                "data_completeness_percentage": "number"
-            },
-            "detection_parameters": {
-                "pr_critical_threshold": "50%",
-                "pr_warning_threshold": "70%", 
-                "irradiance_daylight_threshold": "100 W/m²",
-                "temperature_correlation_enabled": "boolean"
-            }
-        }
-    }
-    ```
+    # Five-Minute Performance Ratio (PR) Anomaly Report
+
+    This report provides a detailed analysis of problematic five-minute Performance Ratio intervals, identifying anomalies, their potential causes, and actionable recommendations.
+
+
+    ## 1. Problematic Five-Minute PR Records
+
+    This section details individual instances where the five-minute Performance Ratio (PR) exhibited unusual behavior.
+
+    ### Example Anomaly Record
+
+    * **Datetime:** `2025-05-29T06:00:00Z` (example ISO datetime)
+    * **Five-Minute PR (%):** `67.65` (example number)
+    * **Irradiance (W/m²):** `14.50` (example number)
+    * **PV Module Temperature (°C):** `24.05` (example number)
+    * **Active Power Effective (kW):** `9.72` (example number)
+    * **Anomaly Type:** `low_light_high_pr` (e.g., `low_light_high_pr` | `dramatic_pr_drop` | `environmental_mismatch` | `power_generation_anomaly` | `erratic_behavior` | `complete_outage`)
+    * **Severity:** `low` (e.g., `low` | `medium` | `high` | `critical`)
+    * **Context:** `Detailed explanation of why this is anomalous` (e.g., "The PR is unusually high for such low irradiance, indicating a potential sensor misreading or data anomaly during dawn.")
+
+        **Contributing Factors:**
+        * **Irradiance Level:** `low` (e.g., `low` | `medium` | `high`)
+        * **Temperature Impact:** `normal` (e.g., `normal` | `high` | `low`)
+        * **Power Correlation:** `poor` (e.g., `normal` | `poor` | `excellent`)
+
+    *(Additional problematic five-minute PR entries would follow here if present in the data.)*
+
+    ---
+
+    ## 2. Analysis Summary
+
+    ### Comprehensive Overview
+
+    Comprehensive explanation of identified anomalies, potential causes, patterns observed, and recommendations.
+
+    ### Analysis Period
+
+    * **Total Records Analyzed:** `number` (e.g., 2880)
+    * **Total Anomalies Found:** `number` (e.g., 55)
+    * **Dates Processed:** `["YYYY-MM-DD"]` (e.g., `["2025-05-29", "2025-05-30", "2025-05-31"]`)
+
+    ### Anomaly Breakdown
+
+    * **Dramatic PR Drops:** `number` (e.g., 20)
+    * **Environmental Mismatches:** `number` (e.g., 15)
+    * **Power Generation Anomalies:** `number` (e.g., 10)
+    * **Erratic Behavior Instances:** `number` (e.g., 7)
+    * **Complete Outages:** `number` (e.g., 3)
+
+    ### Severity Distribution
+
+    * **Critical:** `number` (e.g., 5)
+    * **High:** `number` (e.g., 10)
+    * **Medium:** `number` (e.g., 20)
+    * **Low:** `number` (e.g., 20)
+
+    ### Environmental Analysis
+
+    * **Irradiance Range Analyzed:** `string` (e.g., "0 - 1200 W/m²")
+    * **Temperature Range Analyzed:** `string` (e.g., "15°C - 65°C")
+    * **Power Range Analyzed:** `string` (e.g., "0 - 50 kW")
+    * **Most Problematic Conditions:** `string` (e.g., "Low irradiance periods (<100 W/m²) and sudden drops in irradiance.")
+
+    ### Patterns Identified
+
+    * `Specific patterns observed across the analysis period` (e.g., `["Frequent short-duration PR dips around midday.", "Higher incidence of 'low_light_high_pr' anomalies at dawn/dusk."]`)
+
+    ### Recommendations
+
+    * Immediate actions for critical anomalies (e.g., Investigate root cause of 'dramatic_pr_drops' in specific inverters.)
+    * Investigation priorities (e.g., Prioritize anomalies affecting highest power generation periods.)
+    * Monitoring improvements (e.g., Enhance real-time alerting for critical PR deviations.)
+    * Maintenance recommendations (e.g., Review sensor calibration for low irradiance accuracy.)
+
+    ---
+
+    ## 3. Metadata
+
+    ### Analysis Timestamp
+
+    `ISO datetime` (e.g., 2025-06-18T22:28:01+08:00)
+
+    ### Data Quality
+
+    * **Total Five-Minute Intervals:** `number` (e.g., 2880)
+    * **Anomalous Intervals:** `number` (e.g., 55)
+    * **Data Completeness Percentage:** `number` (e.g., 99.5)
+
+    ### Detection Parameters
+
+    * **PR Critical Threshold:** `50%`
+    * **PR Warning Threshold:** `70%`
+    * **Irradiance Daylight Threshold:** `100 W/m²`
+    * **Temperature Correlation Enabled:** `boolean` (e.g., `true`)
 
     ## Analysis Quality Guidelines
     1. **Environmental Context**: Always consider irradiance and temperature when evaluating PR anomalies
