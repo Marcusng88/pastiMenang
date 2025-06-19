@@ -15,9 +15,9 @@ async def save_generated_report(callback_context: CallbackContext):
     try:
         # Convert HTML to PDF in memory
         pdf_bytes_io = BytesIO()
-        pisa_status = pisa.CreatePDF(src=html_content, dest=pdf_bytes_io)
+        error = pisa.CreatePDF(src=html_content, dest=pdf_bytes_io)
 
-        if pisa_status.err:
+        if error:
             print("Error during PDF generation")
             return
 
@@ -52,9 +52,9 @@ def save_generated_report_local(callback_context: CallbackContext):
     html_content = callback_context.state.get("final_html")
 
     pdf_bytes_io = BytesIO()
-    pisa_status = pisa.CreatePDF(src=html_content, dest=pdf_bytes_io)
+    error = pisa.CreatePDF(src=html_content, dest=pdf_bytes_io)
 
-    if pisa_status.err:
+    if error:
         print("Error during PDF generation")
     else:
         pdf_bytes = pdf_bytes_io.getvalue()

@@ -13,7 +13,6 @@ def setup(callback_context: CallbackContext):
         callback_context.state["problematic_detailed_inverter_performance"] = (
             problematic_detailed_inverter_settings
         )
-    # callback_context.state["problematic_detailed_inverter_performance"] = []
 
 
 detailed_inverter_performance_agent = Agent(
