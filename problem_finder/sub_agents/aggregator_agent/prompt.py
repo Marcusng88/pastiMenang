@@ -13,6 +13,7 @@ def return_aggregator_prompt() -> str:
     1. {daily_pr_agent_output} - Daily Performance Ratio analysis and trends
     2. {detailed_inverter_performance_agent_output} - Detailed inverter-level performance analysis
     3. {detailed_plant_timeseries_agent_output} - Plant-wide time series analysis and patterns
+    4. {alarm_agent_output} - Analysis for alarms and its error codes
 
     ## MANDATORY OUTPUT REQUIREMENTS
 
